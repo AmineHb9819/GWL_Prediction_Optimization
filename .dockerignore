@@ -1,0 +1,40 @@
+# ============================================================
+# .dockerignore — Fichiers exclus du build Docker
+# ============================================================
+
+# Environnement virtuel Python
+venv/
+.venv/
+env/
+
+# Notebooks Jupyter (non nécessaires en production)
+notebooks/
+*.ipynb
+
+# Fichiers Git
+.git/
+.gitignore
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation (non nécessaire dans l'image)
+*.md
+docs/
+
+# Source notebooks
+src/
+
+# GitHub Actions (non nécessaire dans l'image)
+.github/

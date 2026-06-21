@@ -1,11 +1,30 @@
+﻿# === Environnement Python ===
 venv/
 __pycache__/
 *.pyc
+*.pyo
 .ipynb_checkpoints/
+
+# === Modeles LSTM (volumineux — regeneres par l'entrainement) ===
+*.keras
+
+# === Donnees brutes ===
 data/raw/*
 !data/raw/.gitkeep
-models/saved/*
-!models/saved/.gitkeep
+
+# === Fichiers temporaires ===
+~$*
+*.tmp
 .env
+
+# === Anciens formats de modeles ===
 *.h5
 *.pkl
+
+# === IDE ===
+.vscode/
+.idea/
+
+# === OS ===
+.DS_Store
+Thumbs.db

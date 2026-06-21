@@ -1,0 +1,126 @@
+{
+  "Pozzo_1": {
+    "r2": 0.9220877588352686,
+    "n_features": 7,
+    "seed": 42,
+    "feature_names": [
+      "Rainfall_Velletri",
+      "Volume_Pozzo_1",
+      "Volume_Pozzo_2",
+      "Volume_Pozzo_4",
+      "Mois_sin",
+      "Mois_cos",
+      "Depth_to_Groundwater_Pozzo_1"
+    ]
+  },
+  "Pozzo_2": {
+    "r2": 0.05362460182536566,
+    "n_features": 10,
+    "seed": 7,
+    "feature_names": [
+      "Rainfall_Velletri",
+      "Volume_Pozzo_2",
+      "Volume_Pozzo_1",
+      "Volume_Pozzo_4",
+      "Volume_Pozzo_6",
+      "Volume_Pozzo_8",
+      "Volume_Pozzo_9",
+      "Mois_sin",
+      "Mois_cos",
+      "Depth_to_Groundwater_Pozzo_2"
+    ]
+  },
+  "Pozzo_3": {
+    "r2": 0.9726596444590918,
+    "n_features": 5,
+    "seed": 7,
+    "feature_names": [
+      "Rainfall_Velletri",
+      "Volume_Pozzo_3",
+      "Mois_sin",
+      "Mois_cos",
+      "Depth_to_Groundwater_Pozzo_3"
+    ]
+  },
+  "Pozzo_4": {
+    "r2": 0.9111775102610329,
+    "n_features": 9,
+    "seed": 7,
+    "feature_names": [
+      "Rainfall_Velletri",
+      "Volume_Pozzo_4",
+      "Volume_Pozzo_1",
+      "Volume_Pozzo_2",
+      "Volume_Pozzo_6",
+      "Volume_Pozzo_9",
+      "Mois_sin",
+      "Mois_cos",
+      "Depth_to_Groundwater_Pozzo_4"
+    ]
+  },
+  "Pozzo_5": {
+    "r2": 0.10031543263810849,
+    "n_features": 5,
+    "seed": 7,
+    "feature_names": [
+      "Rainfall_Velletri",
+      "Volume_Pozzo_5",
+      "Mois_sin",
+      "Mois_cos",
+      "Depth_to_Groundwater_Pozzo_5"
+    ]
+  },
+  "Pozzo_7": {
+    "r2": 0.8264912255715575,
+    "n_features": 5,
+    "seed": 7,
+    "feature_names": [
+      "Rainfall_Velletri",
+      "Volume_Pozzo_7",
+      "Mois_sin",
+      "Mois_cos",
+      "Depth_to_Groundwater_Pozzo_7"
+    ]
+  },
+  "Pozzo_8": {
+    "r2": 0.2983958450418218,
+    "n_features": 6,
+    "seed": 7,
+    "feature_names": [
+      "Rainfall_Velletri",
+      "Volume_Pozzo_8",
+      "Volume_Pozzo_2",
+      "Mois_sin",
+      "Mois_cos",
+      "Depth_to_Groundwater_Pozzo_8"
+    ]
+  },
+  "Pozzo_9": {
+    "r2": 0.9270487543610381,
+    "n_features": 7,
+    "seed": 7,
+    "feature_names": [
+      "Rainfall_Velletri",
+      "Volume_Pozzo_9",
+      "Volume_Pozzo_2",
+      "Volume_Pozzo_4",
+      "Mois_sin",
+      "Mois_cos",
+      "Depth_to_Groundwater_Pozzo_9"
+    ]
+  },
+  "Pozzo_6": {
+    "r2": 0.9371358107324957,
+    "n_features": 7,
+    "seed": 42,
+    "feature_names": [
+      "Rainfall_Velletri",
+      "Volume_Pozzo_6",
+      "Volume_Pozzo_2",
+      "Volume_Pozzo_4",
+      "Mois_sin",
+      "Mois_cos",
+      "Depth_to_Groundwater_Pozzo_6"
+    ]
+  }
+}

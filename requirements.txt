@@ -1,0 +1,33 @@
+# ============================================================
+# Dépendances — Application de gestion des nappes phréatiques
+# ============================================================
+# Installation : pip install -r requirements.txt
+# ============================================================
+
+# --- Interface ---
+streamlit>=1.30.0
+streamlit-folium>=0.18.0
+
+# --- Données et calcul ---
+pandas>=2.0.0
+numpy>=1.24.0
+
+# --- Visualisation ---
+plotly>=5.18.0
+folium>=0.15.0
+matplotlib>=3.7.0
+seaborn>=0.13.0
+
+# --- IA / Machine Learning ---
+tensorflow==2.21.0
+keras==3.14.0
+scikit-learn>=1.3.0
+
+# --- Optimisation ---
+deap>=1.4.0
+networkx>=3.2.0
+
+# --- Sécurité / Authentification ---
+streamlit-authenticator>=0.3.0
+bcrypt>=4.0.0
+PyYAML>=6.0.0
