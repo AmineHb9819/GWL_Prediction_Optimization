@@ -9,7 +9,7 @@ FROM python:3.13-slim
 
 # Métadonnées
 LABEL maintainer="Amine"
-LABEL description="Application Streamlit — Modélisation et optimisation des nappes phréatiques par IA"
+LABEL description="Application Streamlit - Modélisation et optimisation des nappes phréatiques par IA"
 
 # Variables d'environnement
 ENV PYTHONDONTWRITEBYTECODE=1 \

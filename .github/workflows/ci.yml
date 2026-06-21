@@ -1,5 +1,5 @@
 # ============================================================
-# CI — Intégration continue (GitHub Actions)
+# CI - Intégration continue (GitHub Actions)
 # ============================================================
 # Déclenché sur push et pull request vers main.
 # Vérifie que l'application se construit correctement.
@@ -44,7 +44,7 @@ jobs:
           pip install flake8
 
       # 5. Lint — vérification syntaxique (erreurs critiques uniquement)
-      - name: Lint (flake8 — erreurs critiques)
+      - name: Lint (flake8 - erreurs critiques)
         run: |
           flake8 app/ --count --select=E9,F63,F7,F82 --show-source --statistics
 

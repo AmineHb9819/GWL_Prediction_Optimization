@@ -2,11 +2,11 @@
 
 Application Streamlit pour la modélisation et l'optimisation des nappes phréatiques, couplant **LSTM**, **théorie des graphes** et **algorithme génétique**.
 
-> Projet de Fin d'Études (PFE) — Master Sciences et Ingénierie de Données, 2026
+> Projet de Fin d'Études (PFE) - Master Sciences et Ingénierie de Données, 2026
 
 ---
 
-## 📋 Description
+## Description
 
 Cette application permet aux gestionnaires de nappes phréatiques de :
 
@@ -62,6 +62,7 @@ docker-compose up -d
 ```
 
 Pour reconstruire après modification :
+
 ```bash
 docker-compose up -d --build
 ```
@@ -91,19 +92,19 @@ streamlit run app/main.py
 
 L'application utilise un système d'authentification avec 3 niveaux d'accès :
 
-| Rôle | Module 1 (Observer) | Module 2 (Prédire) | Module 3 (Décider) | Administration |
-|------|:---:|:---:|:---:|:---:|
-| **lecteur** | ✅ | ❌ | ❌ | ❌ |
-| **gestionnaire** | ✅ | ✅ | ✅ | ❌ |
-| **admin** | ✅ | ✅ | ✅ | ✅ |
+| Rôle             | Module 1 (Observer) | Module 2 (Prédire) | Module 3 (Décider) | Administration |
+| ---------------- | :-----------------: | :----------------: | :----------------: | :------------: |
+| **lecteur**      |         ✅          |         ❌         |         ❌         |       ❌       |
+| **gestionnaire** |         ✅          |         ✅         |         ✅         |       ❌       |
+| **admin**        |         ✅          |         ✅         |         ✅         |       ✅       |
 
 ### Comptes par défaut
 
-| Identifiant | Mot de passe | Rôle |
-|-------------|-------------|------|
-| `admin` | `admin123` | admin |
-| `gestionnaire` | `gest123` | gestionnaire |
-| `lecteur` | `lect123` | lecteur |
+| Identifiant    | Mot de passe | Rôle         |
+| -------------- | ------------ | ------------ |
+| `admin`        | `admin123`   | admin        |
+| `gestionnaire` | `gest123`    | gestionnaire |
+| `lecteur`      | `lect123`    | lecteur      |
 
 > ⚠️ **Changez les mots de passe par défaut avant tout déploiement.**
 
@@ -115,13 +116,13 @@ Les mots de passe sont hashés avec **bcrypt** dans le fichier `app/config.yaml`
 
 Le fichier CSV doit respecter le nommage suivant :
 
-| Type | Préfixe obligatoire | Exemple |
-|------|---------------------|---------|
-| Date | `Date` | `Date` |
+| Type                 | Préfixe obligatoire     | Exemple                       |
+| -------------------- | ----------------------- | ----------------------------- |
+| Date                 | `Date`                  | `Date`                        |
 | Niveau piézométrique | `Depth_to_Groundwater_` | `Depth_to_Groundwater_Puits1` |
-| Volume de pompage | `Volume_` | `Volume_Puits1` |
-| Pluviométrie | `Rainfall_` | `Rainfall_Station1` |
-| Température | `Temperature_` | `Temperature_Station1` |
+| Volume de pompage    | `Volume_`               | `Volume_Puits1`               |
+| Pluviométrie         | `Rainfall_`             | `Rainfall_Station1`           |
+| Température          | `Temperature_`          | `Temperature_Station1`        |
 
 **Durée minimale recommandée** : 3 ans de données journalières.
 
@@ -129,14 +130,14 @@ Le fichier CSV doit respecter le nommage suivant :
 
 ## ⚙️ Stack technique
 
-| Couche | Technologies |
-|--------|-------------|
-| Interface | Streamlit, Folium, Plotly |
-| IA | TensorFlow/Keras (LSTM), Scikit-learn |
-| Optimisation | DEAP (algorithme génétique), NetworkX |
-| Sécurité | streamlit-authenticator, bcrypt, RBAC |
-| DevOps | Docker, docker-compose, GitHub Actions |
-| Données | Pandas, NumPy |
+| Couche       | Technologies                           |
+| ------------ | -------------------------------------- |
+| Interface    | Streamlit, Folium, Plotly              |
+| IA           | TensorFlow/Keras (LSTM), Scikit-learn  |
+| Optimisation | DEAP (algorithme génétique), NetworkX  |
+| Sécurité     | streamlit-authenticator, bcrypt, RBAC  |
+| DevOps       | Docker, docker-compose, GitHub Actions |
+| Données      | Pandas, NumPy                          |
 
 ---
 
@@ -144,11 +145,11 @@ Le fichier CSV doit respecter le nommage suivant :
 
 ### Comparaison des modèles (Petrignano — 1 puits)
 
-| Modèle | R² | RMSE (m) | MAE (m) |
-|--------|-----|----------|---------|
-| **LSTM** | **0.9565** | **0.1812** | **0.1239** |
-| Random Forest | 0.9469 | 0.1979 | 0.1606 |
-| ANN | 0.9093 | 0.2586 | 0.2047 |
+| Modèle        | R²         | RMSE (m)   | MAE (m)    |
+| ------------- | ---------- | ---------- | ---------- |
+| **LSTM**      | **0.9565** | **0.1812** | **0.1239** |
+| Random Forest | 0.9469     | 0.1979     | 0.1606     |
+| ANN           | 0.9093     | 0.2586     | 0.2047     |
 
 ### Optimisation multi-puits (Doganella — 9 puits)
 
@@ -160,22 +161,22 @@ Le fichier CSV doit respecter le nommage suivant :
 
 ## 📁 Couverture des 5 piliers
 
-| Pilier | Implémentation |
-|--------|---------------|
-| **Intelligence Artificielle** | LSTM, Random Forest, ANN — comparaison sur Petrignano |
-| **Big Data** | Pipeline de nettoyage automatique générique |
-| **DevOps** | Docker, docker-compose, GitHub Actions CI |
-| **Sécurité** | Authentification bcrypt, RBAC (3 rôles) |
-| **Théorie des graphes** | NetworkX — centralité, contraintes de voisinage dans l'AG |
+| Pilier                        | Implémentation                                            |
+| ----------------------------- | --------------------------------------------------------- |
+| **Intelligence Artificielle** | LSTM, Random Forest, ANN — comparaison sur Petrignano     |
+| **Big Data**                  | Pipeline de nettoyage automatique générique               |
+| **DevOps**                    | Docker, docker-compose, GitHub Actions CI                 |
+| **Sécurité**                  | Authentification bcrypt, RBAC (3 rôles)                   |
+| **Théorie des graphes**       | NetworkX — centralité, contraintes de voisinage dans l'AG |
 
 ---
 
 ## 📄 Licence
 
-Projet académique — Tous droits réservés.
+Projet académique - Tous droits réservés.
 
 ---
 
 ## 👤 Auteur
 
-**Amine** — Master Sciences et Ingénierie de Données, 2026
+**Amine** - Master Sciences et Ingénierie de Données, 2026
