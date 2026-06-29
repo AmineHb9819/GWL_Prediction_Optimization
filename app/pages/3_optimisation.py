@@ -97,7 +97,7 @@ def construire_features(nom_puits):
     return feat, voisins_vol
 
 # === Titre ===
-st.title("⚡ Module 3 — Optimisation")
+st.title("⚡ Module 3 - Optimisation")
 st.markdown("Trouvez le plan de pompage optimal pour tous vos puits.")
 
 # ============================================================
@@ -118,7 +118,7 @@ st.divider()
 # ============================================================
 # SECTION 1 : Vérification des modèles
 # ============================================================
-st.subheader("🔍 Étape 1 — Vérification des modèles")
+st.subheader("🔍 Étape 1 - Vérification des modèles")
 
 st.markdown("""
 L'application vérifie que les modèles LSTM sont disponibles et évalue leur fiabilité. Les puits fiables seront optimisés par l'algorithme génétique. Les puits non fiables seront exclus et leur pompage sera maintenu à la dernière valeur connue.
@@ -256,13 +256,13 @@ with col1:
     st.metric("✅ Puits fiables (optimisés)", len(puits_fiables))
     if puits_fiables:
         for p in puits_fiables:
-            st.markdown(f"  - **{p}** — R² = {resultats_r2[p]:.4f}")
+            st.markdown(f"  - **{p}** - R² = {resultats_r2[p]:.4f}")
 
 with col2:
     st.metric("⚠️ Puits exclus (pompage fixe)", len(puits_exclus))
     if puits_exclus:
         for p in puits_exclus:
-            st.markdown(f"  - **{p}** — R² = {resultats_r2[p]:.4f}")
+            st.markdown(f"  - **{p}** - R² = {resultats_r2[p]:.4f}")
 
 if puits_exclus:
     with st.expander("ℹ️ Pourquoi certains puits sont exclus ?"):
@@ -294,7 +294,7 @@ st.divider()
 # ============================================================
 # SECTION 2 : Paramètres de l'optimisation
 # ============================================================
-st.subheader("⚙️ Étape 2 — Paramètres de l'optimisation")
+st.subheader("⚙️ Étape 2 - Paramètres de l'optimisation")
 
 # Calcul de la demande actuelle
 demande_actuelle = 0
@@ -395,7 +395,7 @@ for p in puits_exclus:
         'vol_max': df[vol_col].max()
     }
 
-with st.expander("📋 Détail des contraintes — Cliquez pour voir"):
+with st.expander("📋 Détail des contraintes - Cliquez pour voir"):
     
     st.markdown("**Puits optimisés :**")
     
@@ -1049,9 +1049,9 @@ if 'resultat_optimisation' in st.session_state:
                         line=dict(color='#DC2626', width=1.5)
                     ))
                     
-                    titre = f"{puits} — Gain : {gain:+.2f}m"
+                    titre = f"{puits} - Gain : {gain:+.2f}m"
                 else:
-                    titre = f"{puits} — {debit_opt_val:.0f} m³/j"
+                    titre = f"{puits} - {debit_opt_val:.0f} m³/j"
                 
                 fig.add_trace(go.Scatter(
                     x=jours, y=niv_opt,
@@ -1104,10 +1104,10 @@ if 'resultat_optimisation' in st.session_state:
             for puits, var in augmentes:
                 voisins_p = st.session_state['voisins'].get(puits, [])
                 if not voisins_p:
-                    raison = "puits isolé — aucun impact sur les voisins"
+                    raison = "puits isolé - aucun impact sur les voisins"
                 else:
-                    raison = f"connecté à {', '.join(voisins_p)} — marge suffisante"
-                st.success(f"**{puits}** ({var:+.1f}%) — {raison}")
+                    raison = f"connecté à {', '.join(voisins_p)} - marge suffisante"
+                st.success(f"**{puits}** ({var:+.1f}%) - {raison}")
         
         if reduits:
             st.markdown("**↓ Puits à réduire :**")
@@ -1117,12 +1117,12 @@ if 'resultat_optimisation' in st.session_state:
                     raison = f"zone sous pression (voisins : {', '.join(voisins_p)})"
                 else:
                     raison = "proche du seuil critique"
-                st.warning(f"**{puits}** ({var:+.1f}%) — {raison}")
+                st.warning(f"**{puits}** ({var:+.1f}%) - {raison}")
         
         if maintenus:
             st.markdown("**≈ Puits à maintenir :**")
             for puits, var in maintenus:
-                st.info(f"**{puits}** ({var:+.1f}%) — régime actuel adéquat")
+                st.info(f"**{puits}** ({var:+.1f}%) - régime actuel adéquat")
         
         st.divider()
     
@@ -1199,7 +1199,7 @@ if 'resultat_optimisation' in st.session_state:
         - **{len(augmentes)}** puits à augmenter (puits isolés ou avec marge suffisante)
         - **{len(reduits)}** puits à réduire (zones sous pression)
         - **{len(maintenus)}** puits à maintenir (régime actuel adéquat)
-        - **{len(puits_e)}** puits exclus (pompage fixe — données insuffisantes)
+        - **{len(puits_e)}** puits exclus (pompage fixe, données insuffisantes)
         """)
     else:
         st.markdown(f"""

@@ -23,7 +23,7 @@ from utils.auth import guard_page
 # === Vérifier que les données sont chargées ===
 if 'data' not in st.session_state:
     st.warning("⚠️ Aucune donnée chargée. Retournez à la page d'accueil.")
-    st.page_link("main.py", label="← Retour à l'accueil", icon="🏠")
+    st.page_link("main.py", label="Retour à l'accueil", icon="🏠")
     st.stop()
 
 # === Vérifier le rôle (lecteur, gestionnaire, admin) ===
@@ -33,7 +33,7 @@ df = st.session_state['data']
 niveau_cols = st.session_state['niveau_cols']
 
 # === Titre ===
-st.title("📊 Module 1 — Visualisation")
+st.title("📊 Module 1 - Visualisation")
 st.markdown("**Explorez l'état de votre nappe phréatique à travers les données historiques.**")
 
 st.divider()
@@ -50,9 +50,8 @@ if 'gps_coords' not in st.session_state:
 # Demander les coordonnées GPS
 with st.expander("⚙️ Configurer les coordonnées GPS des puits"):
     st.markdown("""
-    Entrez la **latitude** et la **longitude** de chaque puits  
-    pour les afficher sur la carte. Si vous ne connaissez pas les  
-    coordonnées exactes, vous pouvez utiliser des valeurs approximatives.
+    Entrez la **latitude** et la **longitude** de chaque puits pour les afficher sur la carte. 
+    Si vous ne connaissez pas les coordonnées exactes, vous pouvez utiliser des valeurs approximatives.
     """)
     
     coords = {}
@@ -63,11 +62,11 @@ with st.expander("⚙️ Configurer les coordonnées GPS des puits"):
         nom = col.replace('Depth_to_Groundwater_', '')
         col1, col2 = st.columns(2)
         with col1:
-            lat = st.number_input(f"Latitude — {nom}", 
+            lat = st.number_input(f"Latitude - {nom}", 
                                   value=default_lat + i * 0.005,
                                   format="%.4f", key=f"lat_{nom}")
         with col2:
-            lon = st.number_input(f"Longitude — {nom}", 
+            lon = st.number_input(f"Longitude - {nom}", 
                                   value=default_lon + i * 0.005,
                                   format="%.4f", key=f"lon_{nom}")
         coords[nom] = {'lat': lat, 'lon': lon}
@@ -204,7 +203,7 @@ fig_temp.add_hline(y=moyenne, line_dash="dash", line_color="gray",
                    annotation_text=f"Moyenne : {moyenne:.2f}m")
 
 fig_temp.update_layout(
-    title=f"Niveau piézométrique — {puits_choisi}",
+    title=f"Niveau piézométrique - {puits_choisi}",
     xaxis_title="Date",
     yaxis_title="Niveau (m)",
     height=450
@@ -265,7 +264,7 @@ C'est un nombre entre **-1** et **+1** :
 |--------|--------------|-----------------|
 | **+1** (rouge foncé) | Les deux puits montent et descendent **ensemble** | Ils partagent probablement la même zone de la nappe |
 | **0** (blanc) | Les deux puits n'ont **aucun lien** | Ils sont indépendants, dans des zones différentes |
-| **-1** (bleu foncé) | Quand l'un monte, l'autre **descend** | Effet de vases communicants — pomper l'un remplit l'autre |
+| **-1** (bleu foncé) | Quand l'un monte, l'autre **descend** | Effet de vases communicants : pomper l'un remplit l'autre |
 
 #### Comment lire la matrice ?
 
@@ -350,7 +349,8 @@ st.dataframe(stats_df, use_container_width=True, hide_index=True)
 
 with st.expander("ℹ️ Que signifient ces statistiques ?"):
     st.markdown("""
-    - **Amplitude** : la différence entre le niveau le plus haut et le plus bas jamais mesurés. Une grande amplitude signifie que le puits est sensible aux variations saisonnières ou au pompage.
+    - **Amplitude** : la différence entre le niveau le plus haut et le plus bas jamais mesurés. Une grande
+     amplitude signifie que le puits est sensible aux variations saisonnières ou au pompage.
     
     - **Écart-type** : mesure la dispersion des niveaux autour de la moyenne.  
       Un écart-type élevé indique un puits avec des variations importantes.
@@ -358,8 +358,6 @@ with st.expander("ℹ️ Que signifient ces statistiques ?"):
     - **Volatilité** : l'écart-type des variations journalières. Mesure la "nervosité" du puits — un puits volatile change beaucoup d'un jour à l'autre, un puits stable varie peu.
       
     **Interprétation pour la gestion :**
-    - Un puits avec une **grande amplitude** et une **forte volatilité**  
-      nécessite une surveillance plus fréquente.
-    - Un puits avec une **faible amplitude** est plus stable mais peut  
-      être plus difficile à modéliser (signal faible).
+    - Un puits avec une **grande amplitude** et une **forte volatilité**, il nécessite une surveillance plus fréquente.
+    - Un puits avec une **faible amplitude** est plus stable mais peut être plus difficile à modéliser (signal faible).
     """)

@@ -131,7 +131,7 @@ def afficher_panneau_admin(config):
     if not verifier_acces("admin"):
         return
 
-    with st.expander("🔧 Administration — Gestion des utilisateurs"):
+    with st.expander("🔧 Administration - Gestion des utilisateurs"):
         st.markdown("### Utilisateurs actuels")
 
         users = config["credentials"]["usernames"]

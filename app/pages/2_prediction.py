@@ -102,15 +102,14 @@ def construire_features(nom_puits):
     return feat, voisins_vol
 
 # === Titre ===
-st.title("🔮 Module 2 — Prédiction")
+st.title("🔮 Module 2 - Prédiction")
 st.markdown("Prédisez le niveau futur d'un puits sélectionné grâce au modèle LSTM.")
 
 # === Avertissement puits exclus par le pipeline de données ===
 if puits_exclus_data:
     st.warning(
         f"⚠️ **Puits exclus du pipeline de données** : {', '.join(puits_exclus_data)}. "
-        f"Ces puits n'ont pas de volume de pompage disponible — ils ne seront pas pris en "
-        f"compte dans l'analyse, la prédiction et l'optimisation."
+        f"Ces puits n'ont pas de volume de pompage disponible, ils ne seront pas pris en compte dans l'analyse, la prédiction et l'optimisation."
     )
 
 st.divider()
@@ -118,7 +117,7 @@ st.divider()
 # ============================================================
 # SECTION 1 : Relations entre les puits (Graphe)
 # ============================================================
-st.subheader("🔗 Étape 1 — Relations entre les puits")
+st.subheader("🔗 Étape 1 - Relations entre les puits")
 
 st.markdown("""
 Avant de prédire, l'application analyse les **relations d'influence** entre les puits. Si deux puits sont liés (corrélation > 0.6), le pompage de l'un affecte le niveau de l'autre.  
@@ -176,7 +175,7 @@ if btn_graphe or 'graphe' in st.session_state:
                 relations_data.append({
                     'Puits': p,
                     'Nombre de voisins': 0,
-                    'Voisins': '—',
+                    'Voisins': '-',
                     'Statut': '🔘 Isolé'
                 })
         
@@ -311,25 +310,25 @@ if btn_graphe or 'graphe' in st.session_state:
             st.markdown("""
             **Les cercles représentent les puits :**
             - **Taille** : plus le cercle est grand, plus le puits est central dans le réseau
-            - **Rouge** : puits très connecté (zone sensible — pomper ici affecte beaucoup de voisins)
+            - **Rouge** : puits très connecté (zone sensible : pomper ici affecte beaucoup de voisins)
             - **Orange** : puits moyennement connecté
             - **Vert** : puits peu connecté
             - **Gris** : puits isolé (pomper ici n'affecte aucun voisin)
             
             **Les lignes représentent les connexions :**
             - **Ligne bleue continue** : corrélation positive (les deux puits montent et descendent ensemble)
-            - **Ligne rouge pointillée** : corrélation négative (quand l'un monte, l'autre descend — vases communicants)
+            - **Ligne rouge pointillée** : corrélation négative (quand l'un monte, l'autre descend = vases communicants)
             - **Épaisseur** : plus la ligne est épaisse, plus la corrélation est forte
             """)
     else:
-        st.info("ℹ️ Un seul puits détecté — pas de graphe à construire")
+        st.info("ℹ️ Un seul puits détecté, pas de graphe à construire")
 
 st.divider()
 
 # ============================================================
 # SECTION 2 : Entraînement des modèles
 # ============================================================
-st.subheader("🧠 Étape 2 — Entraînement des modèles")
+st.subheader("🧠 Étape 2 - Entraînement des modèles")
 
 st.markdown("""
 Entraînez les modèles LSTM pour tous les puits.  
@@ -369,8 +368,7 @@ for nom in puits_disponibles:
 if modeles_incompatibles:
     st.error(
         f"🔴 **Modèles incompatibles détectés** : {', '.join(modeles_incompatibles)}. "
-        f"Les données ont changé (puits exclus ou ajoutés) — les modèles existants ne "
-        f"correspondent plus aux features actuelles. **Un réentraînement est obligatoire.**"
+        f"Les données ont changé (puits exclus ou ajoutés), les modèles existants ne correspondent plus aux features actuelles. **Un réentraînement est obligatoire.**"
     )
 elif len(modeles_existants) == len(puits_disponibles) and not modeles_manquants:
     st.success(f"✅ Tous les modèles sont prêts ({len(modeles_existants)} puits). "
@@ -603,7 +601,7 @@ st.divider()
 # ============================================================
 # SECTION 3 : Prédiction d'un puits
 # ============================================================
-st.subheader("🎯 Étape 3 — Prédiction d'un puits")
+st.subheader("🎯 Étape 3 - Prédiction d'un puits")
 
 if not puits_disponibles:
     st.error("❌ Aucun puits avec volume de pompage disponible.")
@@ -701,9 +699,9 @@ if btn_prediction:
     
     # Message simple selon le R²
     if r2 >= 0.80:
-        st.success(f"✅ Modèle fiable pour {puits_choisi} — les prédictions sont dignes de confiance.")
+        st.success(f"✅ Modèle fiable pour {puits_choisi}, les prédictions sont dignes de confiance.")
     else:
-        st.error(f"❌ Modèle non fiable pour {puits_choisi} (R² < 0.80) — les prédictions sont à prendre avec précaution.")
+        st.error(f"❌ Modèle non fiable pour {puits_choisi} (R² < 0.80), les prédictions sont à prendre avec précaution.")
     
     with st.expander("📊 Détails techniques du modèle"):
         col1, col2, col3 = st.columns(3)
@@ -716,14 +714,11 @@ if btn_prediction:
             st.metric("MAE", f"{mae:.4f} m")
         
         st.markdown(f"""
-        - **R² = {r2:.4f}** → le modèle explique **{r2*100:.1f}%** des variations  
-          du niveau de ce puits. Plus c'est proche de 1.00, mieux c'est.
+        - **R² = {r2:.4f}** → le modèle explique **{r2*100:.1f}%** des variations du niveau de ce puits. Plus c'est proche de 1.00, mieux c'est.
         
-        - **RMSE = {rmse:.4f} m** → l'erreur moyenne de prédiction est de  
-          **{rmse:.2f} mètres**. C'est la marge d'erreur typique.
+        - **RMSE = {rmse:.4f} m** → l'erreur moyenne de prédiction est de **{rmse:.2f} mètres**. C'est la marge d'erreur typique.
         
-        - **MAE = {mae:.4f} m** → en moyenne, la prédiction se trompe  
-          de **{mae:.2f} mètres** (sans tenir compte du sens de l'erreur).
+        - **MAE = {mae:.4f} m** → en moyenne, la prédiction se trompe de **{mae:.2f} mètres** (sans tenir compte du sens de l'erreur).
         """)
     
     # === Graphique prédiction vs réalité ===
@@ -768,7 +763,7 @@ if btn_prediction:
     )
     
     fig.update_layout(
-        title=f"Prédiction — {puits_choisi} (R² = {r2:.4f})",
+        title=f"Prédiction - {puits_choisi} (R² = {r2:.4f})",
         xaxis_title="Date", yaxis_title="Niveau (m)",
         height=500,
         legend=dict(
@@ -802,7 +797,7 @@ if btn_prediction:
     
     # === Prédiction future (simulation récursive) ===
     st.divider()
-    st.subheader(f"🔮 Prédiction future — {horizon} jours")
+    st.subheader(f"🔮 Prédiction future - {horizon} jours")
     
     st.markdown(
         f"Simulation récursive sur **{horizon} jours** : le LSTM prédit jour "
@@ -950,7 +945,7 @@ if btn_prediction:
     )
     
     fig_futur.update_layout(
-        title=f"Prédiction future — {puits_choisi} ({horizon} jours)",
+        title=f"Prédiction future - {puits_choisi} ({horizon} jours)",
         xaxis_title="Date", yaxis_title="Niveau (m)",
         height=500,
         legend=dict(

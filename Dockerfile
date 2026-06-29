@@ -1,5 +1,5 @@
 # ============================================================
-# Dockerfile — Application de gestion des nappes phréatiques
+# Dockerfile - Application de gestion des nappes phréatiques
 # ============================================================
 # Build  : docker build -t gwl-app .
 # Run    : docker run -p 8501:8501 gwl-app
@@ -41,5 +41,5 @@ HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
     CMD curl -f http://localhost:8501/_stcore/health || exit 1
 
 # Commande de démarrage
-# On se place dans app/ pour que les chemins relatifs (../data, ../models) fonctionnent
+# se placer dans app/ pour que les chemins relatifs (../data, ../models) fonctionnent
 CMD ["sh", "-c", "cd app && streamlit run main.py --server.port=8501 --server.address=0.0.0.0 --server.headless=true"]

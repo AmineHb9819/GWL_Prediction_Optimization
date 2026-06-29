@@ -4,8 +4,6 @@ Application Streamlit pour la modélisation et l'optimisation des nappes phréat
 
 > Projet de Fin d'Études (PFE) - Master Sciences et Ingénierie de Données, 2026
 
----
-
 ## Description
 
 Cette application permet aux gestionnaires de nappes phréatiques de :
@@ -16,9 +14,7 @@ Cette application permet aux gestionnaires de nappes phréatiques de :
 
 L'application est **générique** : elle accepte n'importe quel dataset de n'importe quel pays, à condition de respecter le nommage des colonnes.
 
----
-
-## 🏗️ Architecture
+## Architecture
 
 ```
 GWL_PREDICTION_OPTIMIZATION/
@@ -43,11 +39,9 @@ GWL_PREDICTION_OPTIMIZATION/
 └── README.md
 ```
 
----
+## Installation et lancement
 
-## 🚀 Installation et lancement
-
-### Option 1 — Avec Docker (recommandé)
+### Option 1 - Avec Docker (recommandé)
 
 ```bash
 # Cloner le dépôt
@@ -67,7 +61,7 @@ Pour reconstruire après modification :
 docker-compose up -d --build
 ```
 
-### Option 2 — Installation locale
+### Option 2 - Installation locale
 
 ```bash
 # Cloner le dépôt
@@ -86,9 +80,7 @@ pip install -r requirements.txt
 streamlit run app/main.py
 ```
 
----
-
-## 🔐 Authentification et rôles
+## Authentification et rôles
 
 L'application utilise un système d'authentification avec 3 niveaux d'accès :
 
@@ -106,13 +98,11 @@ L'application utilise un système d'authentification avec 3 niveaux d'accès :
 | `gestionnaire` | `gest123`    | gestionnaire |
 | `lecteur`      | `lect123`    | lecteur      |
 
-> ⚠️ **Changez les mots de passe par défaut avant tout déploiement.**
+> **Changez les mots de passe par défaut avant tout déploiement.**
 
 Les mots de passe sont hashés avec **bcrypt** dans le fichier `app/config.yaml`.
 
----
-
-## 📊 Données d'entrée
+## Données d'entrée
 
 Le fichier CSV doit respecter le nommage suivant :
 
@@ -126,9 +116,7 @@ Le fichier CSV doit respecter le nommage suivant :
 
 **Durée minimale recommandée** : 3 ans de données journalières.
 
----
-
-## ⚙️ Stack technique
+## Stack technique
 
 | Couche       | Technologies                           |
 | ------------ | -------------------------------------- |
@@ -139,11 +127,9 @@ Le fichier CSV doit respecter le nommage suivant :
 | DevOps       | Docker, docker-compose, GitHub Actions |
 | Données      | Pandas, NumPy                          |
 
----
+## Résultats
 
-## 🧪 Résultats
-
-### Comparaison des modèles (Petrignano — 1 puits)
+### Comparaison des modèles (Petrignano - 1 puits)
 
 | Modèle        | R²         | RMSE (m)   | MAE (m)    |
 | ------------- | ---------- | ---------- | ---------- |
@@ -156,26 +142,6 @@ Le fichier CSV doit respecter le nommage suivant :
 - **6/9 puits fiables** (R² > 0.82)
 - **0 violation de seuil** sur 30 jours avec l'AG récursif
 - Stratégie identifiée : **transfert de charge** des puits centraux vers les puits isolés
-
----
-
-## 📁 Couverture des 5 piliers
-
-| Pilier                        | Implémentation                                            |
-| ----------------------------- | --------------------------------------------------------- |
-| **Intelligence Artificielle** | LSTM, Random Forest, ANN — comparaison sur Petrignano     |
-| **Big Data**                  | Pipeline de nettoyage automatique générique               |
-| **DevOps**                    | Docker, docker-compose, GitHub Actions CI                 |
-| **Sécurité**                  | Authentification bcrypt, RBAC (3 rôles)                   |
-| **Théorie des graphes**       | NetworkX — centralité, contraintes de voisinage dans l'AG |
-
----
-
-## 📄 Licence
-
-Projet académique - Tous droits réservés.
-
----
 
 ## 👤 Auteur
 

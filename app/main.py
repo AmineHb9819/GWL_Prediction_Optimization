@@ -1,5 +1,5 @@
 # ============================================================
-# Page d'accueil — Application de gestion des nappes phréatiques
+# Page d'accueil - Application de gestion des nappes phréatiques
 # ============================================================
 # C'est le point d'entrée de l'application Streamlit.
 # L'utilisateur arrive ici, uploade son CSV, et navigue
@@ -80,9 +80,9 @@ Cette application utilise l'intelligence artificielle pour :
 st.divider()
 
 # === Guide de préparation des données ===
-with st.expander("📋 Guide de préparation des données — Cliquez pour ouvrir"):
+with st.expander("📋 Guide de préparation des données - Cliquez pour ouvrir"):
     st.markdown("""
-    ### 📁 Format du fichier
+    📁 Format du fichier
     
     - Format : CSV (séparé par des virgules ou des points-virgules)
     - Encodage : UTF-8 recommandé
@@ -93,9 +93,9 @@ with st.expander("📋 Guide de préparation des données — Cliquez pour ouvri
     > Le LSTM a besoin d'observer plusieurs cycles saisonniers complets pour comprendre le comportement de la nappe.  
     > Avec moins de 3 ans, le modèle n'a vu que 2-3 hivers et 2-3 étés, c'est insuffisant pour distinguer les tendances des anomalies.
     
-    ---
     
-    ### 📋 Colonnes obligatoires
+    
+    📋 Colonnes obligatoires
     
     | Type | Préfixe obligatoire | Exemple | Description |
     |------|---------------------|---------|-------------|
@@ -105,9 +105,9 @@ with st.expander("📋 Guide de préparation des données — Cliquez pour ouvri
     | 🌧 Pluie | `Rainfall_` | `Rainfall_Station1` | Pluviométrie (en mm/jour) |
     | 🌡 Température | `Temperature_` | `Temperature_Station1` | Température (en °C) |
     
-    ---
     
-    ### 📊 Colonnes supplémentaires (améliorent la précision)
+    
+    📊 Colonnes supplémentaires (améliorent la précision)
     
     | Type | Préfixe | Exemple |
     |------|---------|---------|
@@ -115,9 +115,9 @@ with st.expander("📋 Guide de préparation des données — Cliquez pour ouvri
     | 💦 Évapotranspiration | `Evapotranspiration_` | `Evapotranspiration_Station1` |
     | Autre | Nom libre | `Humidity_Station1` |
     
-    ---
     
-    ### ✅ Bonnes pratiques pour des données propres
+    
+    ✅ Bonnes pratiques pour des données propres
     
     Nommage des colonnes :
     - Chaque puits doit avoir deux colonnes correspondantes :  
@@ -147,16 +147,15 @@ with st.expander("📋 Guide de préparation des données — Cliquez pour ouvri
     - Pas de trous dans la série (tous les jours doivent être présents)
     - Si des jours manquent, l'application les détectera et les interpolera
     
-    ---
     
-    ### 📐 Exemple de fichier CSV correct
+    📐 Exemple de fichier CSV correct
                 Date,Depth_to_Groundwater_Nord,Depth_to_Groundwater_Sud,Volume_Nord,Volume_Sud,Rainfall_Meteo1,Temperature_Meteo1
 2020-01-01,-25.3,-30.1,1500,2000,3.2,8.5
 2020-01-02,-25.4,-30.0,1600,2100,0.0,9.1
 2020-01-03,-25.3,-29.9,1550,1900,1.5,7.8
-    ---
     
-    ### ⚠️ Ce que l'application ne fait PAS
+    
+    ⚠️ Ce que l'application ne fait PAS
     
     - Elle ne corrige pas les erreurs de nommage des colonnes
     - Elle ne convertit pas les unités
@@ -166,7 +165,7 @@ with st.expander("📋 Guide de préparation des données — Cliquez pour ouvri
     """)
 def nettoyer_donnees(df_brut):
     """
-    Nettoyage automatique — même logique que le notebook 05.
+    Nettoyage automatique - même logique que le notebook 05.
     
     Étapes :
     1. Trouver la date où les colonnes de volume commencent
@@ -400,7 +399,7 @@ if 'data' in st.session_state:
     if 'rapport_nettoyage' in st.session_state:
         rapport = st.session_state['rapport_nettoyage']
         
-        with st.expander("🧹 Rapport de nettoyage — Cliquez pour voir les détails"):
+        with st.expander("🧹 Rapport de nettoyage - Cliquez pour voir les détails"):
             
             col1, col2, col3, col4 = st.columns(4)
             with col1:
@@ -423,7 +422,7 @@ if 'data' in st.session_state:
             if rapport['colonnes_exclues']:
                 st.warning("🗑️ Colonnes exclues (< 50% de données valides) :")
                 for col_info in rapport['colonnes_exclues']:
-                    st.markdown(f"  - `{col_info['nom']}` — {col_info['pct_valid']}% de données valides")
+                    st.markdown(f"  - `{col_info['nom']}` - {col_info['pct_valid']}% de données valides")
             
             if rapport['nan_interpoles'] > 0:
                 st.info(
@@ -457,31 +456,31 @@ if 'data' in st.session_state:
                 statut_vol = "⚠️ Aucun volume de pompage associé"
             
             st.markdown(
-                f"- **{nom}** — Dernier niveau : {dernier:.2f}m | "
+                f"- **{nom}** - Dernier niveau : {dernier:.2f}m | "
                 f"Moyenne : {moy:.2f}m | {statut_vol}"
             )
         
         st.markdown("#### 🔧 Volumes de pompage")
         for col in volume_cols:
             moy = df[col].mean()
-            st.markdown(f"- `{col}` — Moyenne : {moy:.0f} m³/jour")
+            st.markdown(f"- `{col}` - Moyenne : {moy:.0f} m³/jour")
         
         st.markdown("#### 🌧 Pluviométrie")
         for col in pluie_cols:
             moy = df[col].mean()
-            st.markdown(f"- `{col}` — Moyenne : {moy:.2f} mm/jour")
+            st.markdown(f"- `{col}` - Moyenne : {moy:.2f} mm/jour")
         
         if temp_cols:
             st.markdown("#### 🌡 Température")
             for col in temp_cols:
                 moy = df[col].mean()
-                st.markdown(f"- `{col}` — Moyenne : {moy:.1f}°C")
+                st.markdown(f"- `{col}` - Moyenne : {moy:.1f}°C")
         
         if autres_cols:
             st.markdown("#### 📊 Features supplémentaires")
             for col in autres_cols:
                 moy = df[col].mean()
-                st.markdown(f"- `{col}` — Moyenne : {moy:.2f}")
+                st.markdown(f"- `{col}` - Moyenne : {moy:.2f}")
         
         # Résumé
         st.markdown("---")
@@ -653,13 +652,13 @@ if 'data' in st.session_state:
         st.success(f"""
         **Vos données sont prêtes !** {len(niveau_cols)} puits détectés.
         
-        📊 **Module 1 — Observer** : commencez par visualiser vos données  
+        📊 **Module 1 - Observer** : commencez par visualiser vos données  
         pour comprendre le comportement de votre nappe.
         
-        🔮 **Module 2 — Prédire** : sélectionnez un puits pour prédire  
+        🔮 **Module 2 - Prédire** : sélectionnez un puits pour prédire  
         son niveau futur.
         
-        ⚡ **Module 3 — Optimiser** : trouvez le plan de pompage optimal  
+        ⚡ **Module 3 - Optimiser** : trouvez le plan de pompage optimal  
         pour tous vos puits.
         """)    
     # Navigation
@@ -670,14 +669,14 @@ if 'data' in st.session_state:
     
     with col1:
         st.markdown("""
-        ### 📊 Module 1 — Observer
+        ### 📊 Module 1 - Observer
         Carte interactive, graphiques temporels, statistiques par puits.""")
         st.page_link("pages/1_visualisation.py", label="Ouvrir le Module 1",
                      icon="📊", use_container_width=True)
     
     with col2:
         st.markdown("""
-        ### 🔮 Module 2 — Prédire
+        ### 🔮 Module 2 - Prédire
         Prédiction du niveau futur d'un puits sélectionné.
         """)
         if role in ["gestionnaire", "admin"]:
@@ -688,9 +687,8 @@ if 'data' in st.session_state:
     
     with col3:
         st.markdown("""
-        ### ⚡ Module 3 — Décider
-        Plan de pompage optimisé  
-        pour tous les puits
+        ### ⚡ Module 3 - Décider
+        Plan de pompage optimisé pour tous les puits
         """)
         if role in ["gestionnaire", "admin"]:
             st.page_link("pages/3_optimisation.py", label="Ouvrir le Module 3",

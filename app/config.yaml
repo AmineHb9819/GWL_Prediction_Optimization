@@ -1,31 +1,14 @@
-# ============================================================
-# Configuration de l'authentification
-# ============================================================
-# Mots de passe hashés avec bcrypt (jamais en clair)
-# Rôles : admin / gestionnaire / lecteur
-#
-# Utilisateurs par défaut (à changer en production) :
-#   admin        → mot de passe : admin123
-#   gestionnaire → mot de passe : gest123
-#   lecteur      → mot de passe : lect123
-# ============================================================
-
+cookie:
+  expiry_days: 0
+  key: pfe_nappe_2026_secret_key
+  name: gwl_auth_cookie
 credentials:
   usernames:
     admin:
-      name: "Administrateur"
-      password: "$2b$12$vFNyIR7B.RxhYxMgbFjFLe5J9qSSVXnXVWIIj6DvRdqvG0D6GnQsq"
-      role: "admin"
-    gestionnaire:
-      name: "Gestionnaire"
-      password: "$2b$12$LFAZtonKKrMwlgIW.jWiUeS2MnpKMA6Gpu1qGep7mHzgUZwkbaFL2"
-      role: "gestionnaire"
-    lecteur:
-      name: "Lecteur"
-      password: "$2b$12$2fll6XPAyoESMjulmO3gPOLqX/3AxF6NE2z6ClA7c0GHru6y86WZm"
-      role: "lecteur"
-
-cookie:
-  name: "gwl_auth_cookie"
-  key: "pfe_nappe_2026_secret_key"
-  expiry_days: 0
+      name: Administrateur
+      password: $2b$12$vFNyIR7B.RxhYxMgbFjFLe5J9qSSVXnXVWIIj6DvRdqvG0D6GnQsq
+      role: admin
+    viewer:
+      name: viewer
+      password: $2b$12$ELbinn8BSTbhlZqaoK99UesiSioh5y/rZ/tLSeQ4yFtSu1pVpJ/Ei
+      role: lecteur
